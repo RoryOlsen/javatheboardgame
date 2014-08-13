@@ -10,9 +10,9 @@ import java.util.Map;
  */
 public class Screen {
 
-    private Map<Coordinate, Character> characterLocations = new HashMap<>();
-    private int width;
-    private int height;
+    private final Map<Coordinate, Character> characterLocations = new HashMap<>();
+    private final int width;
+    private final int height;
 
     public Screen(int width, int height) {
         this.width = width;
