@@ -12,20 +12,20 @@ public class RegionDecorator extends ViewDecorator {
     private final int width;
     private final int height;
 
-    public int getTop() {
-        return top;
-    }
-
-    public int getLeft() {
-        return left;
-    }
-
     public RegionDecorator(View decoratedView, int top, int left, int width, int height) {
         super(decoratedView);
         this.top = top;
         this.left = left;
         this.width = width;
         this.height = height;
+    }
+
+    public int getTop() {
+        return top;
+    }
+
+    public int getLeft() {
+        return left;
     }
 
     @Override
