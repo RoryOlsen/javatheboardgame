@@ -1,3 +1,7 @@
 JavaTheBoardGame.iml
 
 /.idea/
+
+/out
+
+/.idea
