@@ -20,8 +20,6 @@ public class ColoredCharacter {
         return color;
     }
 
-
-
     @Override
     public String toString() {
         return this.getColor().getCode() + this.getCharacter() + Color.RESET.getCode();

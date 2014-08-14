@@ -56,7 +56,8 @@ public class BorderDecorator extends ViewDecorator {
 
     @Override
     public void draw(Coordinate coordinate, char character, Color color) {
-        getDecoratedView().draw(new Coordinate(coordinate.getX() + thickness, coordinate.getY() + thickness), character, color);
+        Coordinate transformed = new Coordinate(coordinate.getX() + thickness, coordinate.getY() + thickness);
+        getDecoratedView().draw(transformed, character, color);
     }
 
     @Override

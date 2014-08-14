@@ -13,5 +13,5 @@ public abstract class ViewDecorator extends View {
 
     public View getDecoratedView() {
         return decoratedView;
-    };
+    }
 }

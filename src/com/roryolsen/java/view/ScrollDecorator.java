@@ -10,8 +10,8 @@ import java.util.Map;
  */
 public class ScrollDecorator extends ViewDecorator{
 
-    private final int top;
-    private final int left;
+    private int top;
+    private int left;
     private final int width;
     private final int height;
     private final Map<Coordinate, ColoredCharacter> characterLocations = new HashMap<>();
@@ -31,7 +31,28 @@ public class ScrollDecorator extends ViewDecorator{
         if (!(coordinate.getX() < left || coordinate.getY() < top ||
                 coordinate.getX() > left + getDecoratedView().getWidth() - 1 ||
                 coordinate.getY() > top + getDecoratedView().getHeight() - 1)) {
-            getDecoratedView().draw(new Coordinate(coordinate.getX() - left, coordinate.getY() - top), character, color);
+            Coordinate transformed = new Coordinate(coordinate.getX() - left, coordinate.getY() - top);
+            getDecoratedView().draw(transformed, character, color);
+        }
+    }
+
+    public void scrollRelative(int topDifference, int leftDifference) {
+        this.scroll(this.top + topDifference, this.left + leftDifference);
+    }
+
+    public void scroll(int top, int left) {
+        this.top = top;
+        this.left = left;
+        for(int x = 0; x < this.getDecoratedView().getWidth(); x++) {
+            for(int y = 0; y < this.getDecoratedView().getHeight(); y++) {
+                Coordinate decoratedViewCoordinate = new Coordinate(x, y);
+                Coordinate scrollDecoratorCoordinate = new Coordinate(x + left, y + top);
+                ColoredCharacter currentCharacter = characterLocations.get(scrollDecoratorCoordinate);
+                if(currentCharacter == null) {
+                    currentCharacter = new ColoredCharacter(' ', Color.RESET);
+                }
+                this.getDecoratedView().draw(decoratedViewCoordinate, currentCharacter.getCharacter(), currentCharacter.getColor());
+            }
         }
     }
 
