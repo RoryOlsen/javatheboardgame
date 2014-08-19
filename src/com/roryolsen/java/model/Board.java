@@ -10,5 +10,9 @@ import java.util.Map;
  */
 public class Board {
 
-    private Map<Coordinate, BoardSpace> boardSpaceMap = new HashMap<>();
+    private final Map<Coordinate, BoardSpace> boardSpaces = new HashMap<>();
+
+    public Map<Coordinate, BoardSpace> getBoardSpaces() {
+        return boardSpaces;
+    }
 }
