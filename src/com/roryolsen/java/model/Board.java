@@ -12,7 +12,11 @@ public class Board {
 
     private final Map<Coordinate, BoardSpace> boardSpaces = new HashMap<>();
 
-    public Map<Coordinate, BoardSpace> getBoardSpaces() {
-        return boardSpaces;
+    public BoardSpace getSpace(Coordinate coordinate) {
+        return boardSpaces.get(coordinate);
+    }
+
+    public void setSpace(Coordinate coordinate, BoardSpace boardSpace) {
+        boardSpaces.put(coordinate, boardSpace);
     }
 }

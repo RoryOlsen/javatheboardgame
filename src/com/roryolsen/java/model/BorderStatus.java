@@ -8,6 +8,4 @@ public enum BorderStatus {
     NOT_BORDER,
     MOUNTAIN_BORDER,
     LOWLANDS_BORDER;
-
-
 }

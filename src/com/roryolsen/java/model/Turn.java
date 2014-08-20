@@ -5,7 +5,7 @@ package com.roryolsen.java.model;
  */
 public class Turn {
 
-    private int ActionPoints;
+    private int actionPoints;
     private Player player;
     private boolean usedExtraAction;
     private PotentialTilePlacement potentialTilePlacement;

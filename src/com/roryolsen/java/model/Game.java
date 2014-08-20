@@ -9,8 +9,8 @@ public class Game {
 
     private final Board board;
     private final List<Player> players;
-    private Turn currentTurn;
     private final List<GameTile> unusedGameTiles;
+    private Turn currentTurn;
 
     private Game(Board board, List<Player> players, Turn currentTurn, List<GameTile> unusedGameTiles) {
         this.board = board;
