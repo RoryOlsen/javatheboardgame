@@ -6,4 +6,12 @@ package com.roryolsen.java.model;
 public class PalaceTile extends GameTile {
 
     private int value;
+
+    public int getValue() {
+        return value;
+    }
+
+    public void setValue(int value) {
+        this.value = value;
+    }
 }

@@ -12,26 +12,6 @@ public class Player {
     private int oneSpaceLandTilesRemaining;
     private int twoSpaceLandTilesRemaining;
 
-    public void placeGameTile(GameTile gameTile) {
-        throw new UnsupportedOperationException();
-    }
-
-    public void placeDeveloper() {
-        throw new UnsupportedOperationException();
-    }
-
-    public void moveDeveloper() {
-        throw new UnsupportedOperationException();
-    }
-
-    public void upgradePalace() {
-        throw new UnsupportedOperationException();
-    }
-
-    public void useExtraActionToken() {
-        throw new UnsupportedOperationException();
-    }
-
     public int getScore() {
         return score;
     }

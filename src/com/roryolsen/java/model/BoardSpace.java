@@ -5,7 +5,7 @@ package com.roryolsen.java.model;
  */
 public class BoardSpace {
 
-    private GameTile topTerrainType;
+    private TerrainType topTerrainType;
     private Player playerWithDeveloperOnSpace;
     private int height;
     private final BorderStatus borderStatus;
@@ -16,11 +16,11 @@ public class BoardSpace {
         this.isExtraSpace = isExtraSpace;
     }
 
-    public GameTile getTopTerrainType() {
+    public TerrainType getTopTerrainType() {
         return topTerrainType;
     }
 
-    public void setTopTerrainType(GameTile topTerrainType) {
+    public void setTopTerrainType(TerrainType topTerrainType) {
         this.topTerrainType = topTerrainType;
     }
 

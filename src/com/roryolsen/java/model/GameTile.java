@@ -11,4 +11,8 @@ import java.util.Map;
 public abstract class GameTile {
 
     private Map<Coordinate, TerrainType> TerrainTypeLocations = new HashMap<>();
+
+    public Map<Coordinate, TerrainType> getTerrainTypeLocations() {
+        return TerrainTypeLocations;
+    }
 }
