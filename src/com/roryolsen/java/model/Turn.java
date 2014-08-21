@@ -1,6 +1,7 @@
 package com.roryolsen.java.model;
 
 import com.roryolsen.java.core.Coordinate;
+import com.roryolsen.java.core.Rotation;
 
 import java.util.Map;
 
@@ -15,8 +16,8 @@ public class Turn {
     private boolean usedExtraAction;
     private PotentialTilePlacement potentialTilePlacement;
 
-    //Rotations are not implemented yet. Are rotations being measured in units or degrees?
-    public void placeGameTile(GameTile gameTile, Coordinate coordinate, int rotations) {
+    //Rotations are not supported yet. Are rotations being measured in units or degrees?
+    public void placeGameTile(GameTile gameTile, Coordinate coordinate, Rotation rotation) {
         Map<Coordinate,TerrainType> gameTileStructure = gameTile.getTerrainTypeLocations();
         for(Map.Entry<Coordinate, TerrainType> entry: gameTileStructure.entrySet()) {
             // The transformed board space from the origin space for tiles that are larger than 1 space
