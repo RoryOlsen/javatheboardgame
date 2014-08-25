@@ -1,6 +1,10 @@
 package com.roryolsen.java.view;
 
 import com.roryolsen.java.core.Coordinate;
+import com.roryolsen.java.model.Board;
+import com.roryolsen.java.model.BoardFactory;
+import com.roryolsen.java.model.TerrainType;
+import com.roryolsen.java.model.terrain.Palace;
 import com.sun.javafx.scene.layout.region.Border;
 import jline.ConsoleReader;
 
@@ -53,36 +57,46 @@ public class Screen extends View{
     }
 
     public static void main (String[] args) throws IOException {
-        Screen screen = new Screen(80, 30);
-        ScrollDecorator scrollDecorator = new ScrollDecorator(screen, 4, 4, 100, 100);
-        BorderDecorator borderDecorator = new BorderDecorator(scrollDecorator, 1, new ColoredCharacter('*', Color.CYAN));
-        borderDecorator.draw(new Coordinate(5, 10), 'X', Color.WHITE);
-        borderDecorator.draw(new Coordinate(0, 0), 'A', Color.RED);
-        screen.print();
+        final Screen screen = new Screen(200, 40);
+        RegionDecorator boardRegion = new RegionDecorator(screen, 0, 30, 170, 40);
+        BorderDecorator boardBorderDecorator = new BorderDecorator(boardRegion, 1, new ColoredCharacter('*', Color.WHITE));
+        ScrollDecorator boardScrollDecorator = new ScrollDecorator(boardBorderDecorator, 0, 0, 200, 100);
+        Board board = new BoardFactory().createBoard();
+        board.getSpace(new Coordinate(5,5)).setTopTerrainType(new Palace(5));
+        final BoardRenderer boardRenderer = new BoardRenderer(board, boardScrollDecorator);
 
+        new Thread() {
+            @Override
+            public void run() {
+                while(true) {
+                    boardRenderer.render();
+                    screen.print();
+                    try {
+                        Thread.sleep(100);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }.start();
 
         while(true) {
             int button = new ConsoleReader().readVirtualKey();
 
             switch (button) {
                 case 2:
-                    scrollDecorator.scrollRelative(0, -1);
+                    boardScrollDecorator.scrollRelative(0, -1);
                     break;
                 case 14:
-                    scrollDecorator.scrollRelative(1, 0);
+                    boardScrollDecorator.scrollRelative(1, 0);
                     break;
                 case 6:
-                    scrollDecorator.scrollRelative(0, 1);
+                    boardScrollDecorator.scrollRelative(0, 1);
                     break;
                 case 16:
-                    scrollDecorator.scrollRelative(-1, 0);
+                    boardScrollDecorator.scrollRelative(-1, 0);
                     break;
-                //default:
-                  //  System.out.println((int)button);
-                    //break;
             }
-
-            screen.print();
         }
 
     }

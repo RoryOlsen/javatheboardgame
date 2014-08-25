@@ -2,6 +2,7 @@ package com.roryolsen.java.model;
 
 import com.roryolsen.java.core.Coordinate;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -10,9 +11,13 @@ import java.util.Map;
  */
 public abstract class GameTile {
 
-    private Map<Coordinate, TerrainType> TerrainTypeLocations = new HashMap<>();
+    private final Map<Coordinate, TerrainType> terrainTypeLocations = new HashMap<>();
 
     public Map<Coordinate, TerrainType> getTerrainTypeLocations() {
-        return TerrainTypeLocations;
+        return Collections.unmodifiableMap(terrainTypeLocations);
+    }
+
+    protected void setTerrainType(TerrainType terrainType, Coordinate coordinate) {
+        terrainTypeLocations.put(coordinate, terrainType);
     }
 }

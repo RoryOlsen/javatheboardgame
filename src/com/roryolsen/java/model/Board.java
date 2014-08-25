@@ -2,6 +2,7 @@ package com.roryolsen.java.model;
 
 import com.roryolsen.java.core.Coordinate;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,5 +19,9 @@ public class Board {
 
     public void setSpace(Coordinate coordinate, BoardSpace boardSpace) {
         boardSpaces.put(coordinate, boardSpace);
+    }
+
+    public Map<Coordinate, BoardSpace> getBoardSpaces() {
+        return Collections.unmodifiableMap(boardSpaces);
     }
 }

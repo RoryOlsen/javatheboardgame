@@ -50,7 +50,7 @@ public class Turn {
     }
 
     public void upgradePalace(PalaceTile palaceTile, int value) {
-        palaceTile.setValue(value);
+        throw new UnsupportedOperationException();
     }
 
     public void useExtraActionToken() {
