@@ -16,14 +16,15 @@ public class Turn {
     private boolean usedExtraAction;
     private PotentialTilePlacement potentialTilePlacement;
 
-    //Rotations are not supported yet. Are rotations being measured in units or degrees?
     public void placeGameTile(GameTile gameTile, Coordinate coordinate, Rotation rotation) {
         Map<Coordinate,TerrainType> gameTileStructure = gameTile.getTerrainTypeLocations();
         for(Map.Entry<Coordinate, TerrainType> entry: gameTileStructure.entrySet()) {
             // The transformed board space from the origin space for tiles that are larger than 1 space
-            BoardSpace boardSpace = board.getSpace(new Coordinate(coordinate.getX() + entry.getKey().getX(),
-                    coordinate.getY() + entry.getKey().getY()));
+            Coordinate rotatedCoordinate = rotation.rotateClockwise(entry.getKey());
+            Coordinate currentCoordinate = coordinate.plus(rotatedCoordinate);
+            BoardSpace boardSpace = board.getSpace(currentCoordinate);
             boardSpace.setTopTerrainType(entry.getValue());
+            boardSpace.setHeight(boardSpace.getHeight() + 1);
         }
 
     }

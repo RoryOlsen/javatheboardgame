@@ -20,6 +20,10 @@ public class Coordinate {
         return y;
     }
 
+    public Coordinate plus(Coordinate other) {
+        return new Coordinate(this.getX() + other.getX(), this.getY() + other.getY());
+    }
+
     @Override
     public String toString() {
         return "" + x + "," + y;
