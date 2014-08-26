@@ -14,5 +14,6 @@ public class RotationTest {
         Assert.assertEquals(new Coordinate(2,2), new Rotation(2).rotateClockwise(new Coordinate(-2, -2)));
         Assert.assertEquals(new Coordinate(0,0), new Rotation(2).rotateClockwise(new Coordinate(0, 0)));
         Assert.assertEquals(new Coordinate(2,2), new Rotation(0).rotateClockwise(new Coordinate(2, 2)));
+        Assert.assertEquals(new Coordinate(0,1), new Rotation(-1).rotateClockwise((new Coordinate(1, 0))));
     }
 }
