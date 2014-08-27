@@ -11,8 +11,24 @@ public abstract class View {
     public abstract int getHeight();
 
     public void draw(Coordinate coordinate, String string, Color color) {
+        int currentX = coordinate.getX();
+        int currentY = coordinate.getY();
         for(int i = 0; i < string.length(); i++) {
-            draw(coordinate.plus(i, 0), string.charAt(i), color);
+            if(string.charAt(i) == '\n') {
+                currentX = coordinate.getX();
+                currentY++;
+            } else {
+                draw(new Coordinate(currentX, currentY), string.charAt(i), color);
+                currentX++;
+            }
+        }
+    }
+
+    public void clear() {
+        for(int x = 0; x < this.getWidth(); x++) {
+            for(int y = 0; y < this.getHeight(); y++) {
+                this.draw(new Coordinate(x, y), ' ', Color.RESET);
+            }
         }
     }
 }

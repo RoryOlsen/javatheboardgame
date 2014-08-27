@@ -1,4 +1,4 @@
-package com.roryolsen.java.view;
+package com.roryolsen.java.controller.render;
 
 import com.roryolsen.java.core.Coordinate;
 import com.roryolsen.java.model.*;
@@ -6,6 +6,8 @@ import com.roryolsen.java.model.terrain.Irrigation;
 import com.roryolsen.java.model.terrain.Palace;
 import com.roryolsen.java.model.terrain.RiceField;
 import com.roryolsen.java.model.terrain.Village;
+import com.roryolsen.java.view.Color;
+import com.roryolsen.java.view.View;
 
 import java.util.Map;
 

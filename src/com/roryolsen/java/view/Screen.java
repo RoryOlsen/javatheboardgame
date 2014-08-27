@@ -1,5 +1,8 @@
 package com.roryolsen.java.view;
 
+import com.roryolsen.java.controller.Controller;
+import com.roryolsen.java.controller.TurnActionController;
+import com.roryolsen.java.controller.render.BoardRenderer;
 import com.roryolsen.java.core.Coordinate;
 import com.roryolsen.java.core.Rotation;
 import com.roryolsen.java.model.*;
@@ -7,6 +10,7 @@ import com.roryolsen.java.model.terrain.Palace;
 import jline.ConsoleReader;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -55,8 +59,13 @@ public class Screen extends View{
     }
 
     public static void main (String[] args) throws IOException {
-        final Screen screen = new Screen(200, 40);
-        RegionDecorator boardRegion = new RegionDecorator(screen, 0, 30, 170, 40);
+
+        final int SCREEN_WIDTH = 200;
+        final int SCREEN_HEIGHT = 40;
+        final int SPLIT_WIDTH = 50;
+
+        final Screen screen = new Screen(SCREEN_WIDTH, SCREEN_HEIGHT);
+        RegionDecorator boardRegion = new RegionDecorator(screen, 0, SPLIT_WIDTH, SCREEN_WIDTH - SPLIT_WIDTH, SCREEN_HEIGHT);
         BorderDecorator boardBorderDecorator = new BorderDecorator(boardRegion, 1, new ColoredCharacter('*', Color.WHITE));
         ScrollDecorator boardScrollDecorator = new ScrollDecorator(boardBorderDecorator, 0, 0, 200, 100);
         Board board = new BoardFactory().createBoard();
@@ -66,6 +75,10 @@ public class Screen extends View{
         playerOne.setPlayerNumber(1);
         boardSpace.setPlayerWithDeveloperOnSpace(playerOne);
         boardSpace.setHeight(3);
+        Game game = new Game(board, new ArrayList<Player>(), null, new ArrayList<GameTile>());
+        RegionDecorator controllerRegionDecorator = new RegionDecorator(screen, 0, 0, SPLIT_WIDTH, SCREEN_HEIGHT);
+        Controller turnActionController = new TurnActionController(game, controllerRegionDecorator);
+        turnActionController.act();
 
 
         final BoardRenderer boardRenderer = new BoardRenderer(board, boardScrollDecorator);

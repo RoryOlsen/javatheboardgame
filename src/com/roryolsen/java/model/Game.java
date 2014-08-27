@@ -12,7 +12,7 @@ public class Game {
     private final List<GameTile> unusedGameTiles;
     private Turn currentTurn;
 
-    private Game(Board board, List<Player> players, Turn currentTurn, List<GameTile> unusedGameTiles) {
+    public Game(Board board, List<Player> players, Turn currentTurn, List<GameTile> unusedGameTiles) {
         this.board = board;
         this.players = players;
         this.currentTurn = currentTurn;
