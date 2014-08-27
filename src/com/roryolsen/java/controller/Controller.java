@@ -11,21 +11,26 @@ import java.io.IOException;
  */
 public abstract class Controller {
 
-    protected final Game game;
-    protected final View view;
+    private final GameController gameController;
 
-    protected Controller(Game game, View view) {
-        this.game = game;
-        this.view = view;
+    protected Controller(GameController gameController) {
+        this.gameController = gameController;
     }
 
-    public abstract void act();
+    public abstract void actOnInput(int key);
 
-    public int readKey() {
-        try {
-            return new ConsoleReader().readVirtualKey();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+    public abstract void onActivate();
+
+    public abstract boolean acceptsInput(int key);
+
+    public abstract boolean acceptInputWhenNotActive();
+
+    public void activate(Controller controller) {
+        gameController.activateController(controller);
     }
+
+    public void deactivate() {
+        gameController.deactivateController(this);
+    }
+
 }
