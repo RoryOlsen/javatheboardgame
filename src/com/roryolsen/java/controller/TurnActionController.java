@@ -15,19 +15,49 @@ import java.util.Set;
 public class TurnActionController extends PanelController {
 
 
-    protected TurnActionController(Game game, View view, GameController gameController) {
+    public TurnActionController(Game game, View view, GameController gameController) {
         super(game, view, gameController);
     }
 
     @Override
     public void actOnInput(int key) {
+        switch(key) {
+            case '1':
+                this.activate(new PlaceLandTileController(this.game, this.view, this.gameController));
+                break;
+            case '2':
+                this.activate(new AddDeveloperController(this.game, this.view, this.gameController));
+                break;
+            case '3':
+                this.activate(new MoveDeveloperController(this.game, this.view, this.gameController));
+                break;
+            case '4':
+                this.activate(new BuildPalaceController(this.game, this.view, this.gameController));
+                break;
+            case '5':
+                this.activate(new EnlargePalaceController(this.game, this.view, this.gameController));
+                break;
+            case '6':
+                this.activate(new PlaceIrrigationController(this.game, this.view, this.gameController));
+                break;
+            case '7':
+                this.activate(new DrawPalaceCardController(this.game, this.view, this.gameController));
+                break;
+            case '8':
+                this.activate(new ArrangeFestivalController(this.game, this.view, this.gameController));
+                break;
+            case '9':
+                this.activate(new EndTurnController(this.game, this.view, this.gameController));
+
+        }
 
     }
 
     @Override
     public void onActivate() {
+        this.view.clear();
         final String text = "What do you want to do?\n" +
-                "1. PLace a land tile.\n" +
+                "1. Place a land tile.\n" +
                 "2. Add a developer to Central Java.\n" +
                 "3. Move a developer.\n" +
                 "4. Build a palace.\n" +

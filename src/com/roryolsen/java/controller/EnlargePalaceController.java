@@ -13,12 +13,32 @@ public class EnlargePalaceController extends PanelController {
     }
 
     @Override
-    public void actOnInput(int number) {
+    public void actOnInput(int key) {
+        switch (key) {
+            case 1:
+                this.activate(new AddPalaceController(4, this.game, this.view, this.gameController));
+                break;
+            case 2:
+                this.activate(new AddPalaceController(6, this.game, this.view, this.gameController));
+                break;
+            case 3:
+                this.activate(new AddPalaceController(8,this.game, this.view, this.gameController));
+                break;
+            case 4:
+                this.activate(new AddPalaceController(10,this.game, this.view, this.gameController));
+                break;
+        }
 
     }
 
     @Override
     public void onActivate() {
+        view.clear();
+        final String text = "TO what size would you like to upgrade the palace?\n" +
+                "1. 4\n" +
+                "2. 6\n" +
+                "3. 8\n" +
+                "4. 10\n";
 
     }
 

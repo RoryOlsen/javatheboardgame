@@ -1,6 +1,8 @@
 package com.roryolsen.java.controller;
 
+import com.roryolsen.java.core.Coordinate;
 import com.roryolsen.java.model.Game;
+import com.roryolsen.java.view.Color;
 import com.roryolsen.java.view.View;
 
 /**
@@ -21,7 +23,9 @@ public class PlaceIrrigationController extends PanelController {
 
     @Override
     public void onActivate() {
-
+        this.view.clear();
+        final String text = "Where would you like to place an irrigation tile?";
+        this.view.draw(new Coordinate(0, 0), text, Color.RESET);
     }
 
     @Override

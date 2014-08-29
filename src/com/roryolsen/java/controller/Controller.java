@@ -11,7 +11,7 @@ import java.io.IOException;
  */
 public abstract class Controller {
 
-    private final GameController gameController;
+    protected final GameController gameController;
 
     protected Controller(GameController gameController) {
         this.gameController = gameController;

@@ -1,6 +1,7 @@
 package com.roryolsen.java.view;
 
 import com.roryolsen.java.controller.Controller;
+import com.roryolsen.java.controller.GameController;
 import com.roryolsen.java.controller.TurnActionController;
 import com.roryolsen.java.controller.render.BoardRenderer;
 import com.roryolsen.java.core.Coordinate;
@@ -77,9 +78,8 @@ public class Screen extends View{
         boardSpace.setHeight(3);
         Game game = new Game(board, new ArrayList<Player>(), null, new ArrayList<GameTile>());
         RegionDecorator controllerRegionDecorator = new RegionDecorator(screen, 0, 0, SPLIT_WIDTH, SCREEN_HEIGHT);
-        Controller turnActionController = new TurnActionController(game, controllerRegionDecorator);
-        turnActionController.act();
-
+        GameController gameController = new GameController();
+        gameController.activateController(new TurnActionController(game, controllerRegionDecorator, gameController));
 
         final BoardRenderer boardRenderer = new BoardRenderer(board, boardScrollDecorator);
         boardRenderer.setPotentialTilePlacement(new PotentialTilePlacement(new PalaceTile(3), new Coordinate(6,6), new Rotation(0)));
@@ -99,60 +99,62 @@ public class Screen extends View{
             }
         }.start();
 
-        while(true) {
-            int button = new ConsoleReader().readVirtualKey();
-            PotentialTilePlacement currentPotentialTilePlacement = boardRenderer.getPotentialTilePlacement();
+        gameController.start();
 
-            switch (button) {
-                case 2:
-                    boardScrollDecorator.scrollRelative(0, -1);
-                    break;
-                case 14:
-                    boardScrollDecorator.scrollRelative(1, 0);
-                    break;
-                case 6:
-                    boardScrollDecorator.scrollRelative(0, 1);
-                    break;
-                case 16:
-                    boardScrollDecorator.scrollRelative(-1, 0);
-                    break;
-                case 'w':
-                    boardRenderer.setPotentialTilePlacement(
-                            new PotentialTilePlacement(
-                                    currentPotentialTilePlacement.getGameTile(),
-                                    currentPotentialTilePlacement.getLocation().plus(0, -1),
-                                    currentPotentialTilePlacement.getRotation()
-                            )
-                    );
-                    break;
-                case 'a':
-                    boardRenderer.setPotentialTilePlacement(
-                            new PotentialTilePlacement(
-                                    currentPotentialTilePlacement.getGameTile(),
-                                    currentPotentialTilePlacement.getLocation().plus(-1, 0),
-                                    currentPotentialTilePlacement.getRotation()
-                            )
-                    );
-                    break;
-                case 's':
-                    boardRenderer.setPotentialTilePlacement(
-                            new PotentialTilePlacement(
-                                    currentPotentialTilePlacement.getGameTile(),
-                                    currentPotentialTilePlacement.getLocation().plus(0, 1),
-                                    currentPotentialTilePlacement.getRotation()
-                            )
-                    );
-                    break;
-                case 'd':
-                    boardRenderer.setPotentialTilePlacement(
-                            new PotentialTilePlacement(
-                                    currentPotentialTilePlacement.getGameTile(),
-                                    currentPotentialTilePlacement.getLocation().plus(1, 0),
-                                    currentPotentialTilePlacement.getRotation()
-                            )
-                    );
-                    break;
-            }
-        }
+//        while(true) {
+//            int button = new ConsoleReader().readVirtualKey();
+//            PotentialTilePlacement currentPotentialTilePlacement = boardRenderer.getPotentialTilePlacement();
+//
+//            switch (button) {
+//                case 2:
+//                    boardScrollDecorator.scrollRelative(0, -1);
+//                    break;
+//                case 14:
+//                    boardScrollDecorator.scrollRelative(1, 0);
+//                    break;
+//                case 6:
+//                    boardScrollDecorator.scrollRelative(0, 1);
+//                    break;
+//                case 16:
+//                    boardScrollDecorator.scrollRelative(-1, 0);
+//                    break;
+//                case 'w':
+//                    boardRenderer.setPotentialTilePlacement(
+//                            new PotentialTilePlacement(
+//                                    currentPotentialTilePlacement.getGameTile(),
+//                                    currentPotentialTilePlacement.getLocation().plus(0, -1),
+//                                    currentPotentialTilePlacement.getRotation()
+//                            )
+//                    );
+//                    break;
+//                case 'a':
+//                    boardRenderer.setPotentialTilePlacement(
+//                            new PotentialTilePlacement(
+//                                    currentPotentialTilePlacement.getGameTile(),
+//                                    currentPotentialTilePlacement.getLocation().plus(-1, 0),
+//                                    currentPotentialTilePlacement.getRotation()
+//                            )
+//                    );
+//                    break;
+//                case 's':
+//                    boardRenderer.setPotentialTilePlacement(
+//                            new PotentialTilePlacement(
+//                                    currentPotentialTilePlacement.getGameTile(),
+//                                    currentPotentialTilePlacement.getLocation().plus(0, 1),
+//                                    currentPotentialTilePlacement.getRotation()
+//                            )
+//                    );
+//                    break;
+//                case 'd':
+//                    boardRenderer.setPotentialTilePlacement(
+//                            new PotentialTilePlacement(
+//                                    currentPotentialTilePlacement.getGameTile(),
+//                                    currentPotentialTilePlacement.getLocation().plus(1, 0),
+//                                    currentPotentialTilePlacement.getRotation()
+//                            )
+//                    );
+//                    break;
+//            }
+//        }
     }
 }

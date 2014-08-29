@@ -15,12 +15,27 @@ public class PlaceLandTileController extends PanelController {
     }
 
     @Override
-    public void actOnInput(int number) {
+    public void actOnInput(int key) {
+        switch (key) {
+            case '1':
+                break;
+            case '2':
+                break;
+            case '3':
+                break;
 
+        }
     }
 
     @Override
     public void onActivate() {
+        this.view.clear();
+        final String text = "What type of tile would you like to place?\n" +
+                "1. Single space land tile.\n" +
+                "2. Double space land tile.\n" +
+                "3. Triple space land tile.\n";
+
+        this.view.draw(new Coordinate(0, 0), text, Color.RESET);
 
     }
 
